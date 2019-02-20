@@ -20,15 +20,15 @@ def GenerateNRandTestData(shape=(100, 5)):
     testData = pd.DataFrame(np.random.randn(shape[0], shape[1]))
     return testData
 
-def Generate3ClustersDataSet(shape=(400, 5)):
+def GenerateClusterDataSet(shape=(400, 5)):
     """
-    Generate a random matrix with 3 clusters more or less distinguishable
+    Generate a random matrix with 1 to 4 clusters more or less distinguishable
     """
+    multiple = shape[0]//4
     testData = np.random.randn(shape[0], shape[1])
-    testData[99:199,:] = 2* np.random.randn(100, shape[1]) +8
-    testData[200:299,:] = -4 * np.random.randn(99, shape[1]) -16
-    testData[300:399, :] = -1 * np.random.randn(99, shape[1]) -2
-    
+    testData[0:(multiple-1),:] = 2* np.random.randn(multiple-1, shape[1]) +8
+    testData[multiple:((2*multiple)-1),:] = -4 * np.random.randn(multiple-1, shape[1]) -16
+    testData[(2*multiple):((3*multiple)-1), :] = -1 * np.random.randn(multiple-1, shape[1]) -2
     return pd.DataFrame(testData)
 
 def SaveTestData(testData, path='Example/testSet.csv'):
@@ -55,7 +55,7 @@ def ReadTestData(path='Example/testSet.csv'):
 if __name__ == "__main__":
     
     #testData = GenerateNRandTestData()
-    testData = Generate3ClustersDataSet()
+    testData = GenerateClusterDataSet(shape=(1000, 15))
     SaveTestData(testData)
     
     projectedTestData = ndtp.Get2DProjectedMatrix(testData)
