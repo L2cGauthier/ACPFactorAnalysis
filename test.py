@@ -2,11 +2,9 @@
 
 import numpy as np
 import pandas as pd
-import NdimToPlane as ndtp
+import FactorAnalysis as fa
 
-# Do some argparse shennanigans for usability
-
-# Read a matrix from a file (CSV, dat or such ==> check the most used format in data-science)
+# Read a matrix from a file
 # Find Eigenvalues / Eigenvectors
 # Sort the values, select 2 eigenvectors associated with the biggest eigenvalues
 # Norm the selected eigenvectors
@@ -58,11 +56,11 @@ if __name__ == "__main__":
     testData = GenerateClusterDataSet(shape=(1000, 15))
     SaveTestData(testData)
     
-    projectedTestData = ndtp.Get2DProjectedMatrix(testData)
+    projectedTestData = fa.Get2DProjectedMatrix(testData)
     SaveTestData(pd.DataFrame(projectedTestData), path='Example/projectedTestSet.csv')
     
     
-    ndtp.Plot2DMatrix(projectedTestData)
-    print(ndtp.GetInformationLoss(testData))
+    fa.Plot2DMatrix(projectedTestData)
+    print(fa.GetInformationLoss(testData))
     
     
