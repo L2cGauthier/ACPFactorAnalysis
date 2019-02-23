@@ -14,9 +14,9 @@ The principles of the PCA method are the following.
 4. Let U be the concatenation of U<sub>1</sub> and U<sub>2</sub>, a matrix of dimension px2.
 5. Project the matrix X onto the eigenvectors by calculating the resulting matrix : X.U = X', a matrix of dimension nx2, hence easily representable in R<sup>2</sup>
 
-We can show that the fact we take the two biggest eigenvalues in 3. guarantees that the distance between the projected data and the origin are as close as possible to the distance in the original data set. In other word, by choosing this eigenvalues, we know that the loss of information will be minimized.
+We can show that the fact we take the two biggest eigenvalues in 3. guarantees that the distance between the projected data and the origin are conserved as well as possible. In other word, by choosing these eigenvalues, we know that the loss of information will be minimized.
 
-The loss of information can be calculated as :
+The loss of information can then be calculated as :
 
 <a href="https://www.codecogs.com/eqnedit.php?latex=I&space;=&space;1&space;-&space;\frac{\lambda_1&space;&plus;&space;\lambda_2}{\sum_{i}^{p}&space;\lambda_i}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?I&space;=&space;1&space;-&space;\frac{\lambda_1&space;&plus;&space;\lambda_2}{\sum_{i}^{p}&space;\lambda_i}" title="I = 1 - \frac{\lambda_1 + \lambda_2}{\sum_{i}^{p} \lambda_i}" /></a>
 
