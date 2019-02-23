@@ -10,7 +10,7 @@ The principles of the PCA method are the following.
 
 1. Code your data set as a numerical matrix X of dimension nxp
 2. Compute the matrix X<sup>T</sup>X, which is proportional to the empirical sample covariance matrix of X, of dimension pxp. Conveniently, X<sup>T</sup>X is a symmetric positive definite matrix, meaning that, by property, it is diagonalizable.
-3. Find the 2 distinct biggest eigenvalues (&lambda<sub>1</sub>, &lambda<sub>2</sub>), and a respective normed associated eigenvectors (U<sub>1</sub> \lambda<sub>2</sub>) for each of them.
+3. Find the 2 distinct biggest eigenvalues (&lambda;<sub>1</sub>, &lambda;<sub>2</sub>), and a respective normed associated eigenvectors (U<sub>1</sub> U<sub>2</sub>) for each of them.
 4. Let U be the concatenation of U<sub>1</sub> and U<sub>2</sub>, a matrix of dimension px2.
 5. Project the matrix X onto the eigenvectors by calculating the resulting matrix : X.U = X', a matrix of dimension nx2, hence easily representable in R<sup>2</sup>
 
