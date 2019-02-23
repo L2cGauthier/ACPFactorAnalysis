@@ -2,7 +2,7 @@
 
 import numpy as np
 import pandas as pd
-import ACPFactorAnalysis as acp
+import PCAFactorAnalysis as pca
 
 # Read a matrix from a file
 # Find Eigenvalues / Eigenvectors
@@ -56,11 +56,11 @@ if __name__ == "__main__":
     testData = GenerateClusterDataSet(shape=(1000, 15))
     SaveTestData(testData)
     
-    projectedTestData = acp.Get2DProjectedMatrix(testData)
+    projectedTestData = pca.Get2DProjectedMatrix(testData)
     SaveTestData(pd.DataFrame(projectedTestData), path='Example/projectedTestSet.csv')
     
     
-    acp.Plot2DMatrix(projectedTestData)
-    print(acp.GetInformationLoss(testData))
+    pca.Plot2DMatrix(projectedTestData)
+    print(pca.GetInformationLoss(testData))
     
     
