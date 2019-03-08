@@ -2,14 +2,29 @@
 
 import numpy as np
 import matplotlib.pyplot as plt
+from math import sqrt
 
 def Normalize (vector):
     norm = np.linalg.norm(vector)
     if norm == 0: 
        return vector
     return vector / norm
+
+def NormalizeData (matrix):
+    for i in range(len(matrix[0])):
+        columnMean = 0
+        columnSD = 0
+        for j in range(len(matrix)):
+            columnMean+=matrix[j,i]
+            columnSD+=matrix[j,i]**2
+        columnMean/=len(matrix)
+        columnSD = sqrt( (columnSD/len(matrix)) - columnMean**2)
+        for j in range(len(matrix)):
+            matrix[j,i] = (matrix[j,i] - columnMean) / columnSD
+
+    return matrix
     
-    
+
 def GetMultiplicityAndIndexes(V, value):
     multiplicityList = []
     
@@ -57,8 +72,8 @@ def GetInformationLoss(inputMatrix):
     informationLoss= 0
     
     transposedInputMatrix = inputMatrix.T
-    squareInputMatrix =  np.dot(transposedInputMatrix, inputMatrix)
-    V, U = np.linalg.eig(squareInputMatrix)
+    varianceMatrixApprox =  np.dot(transposedInputMatrix, inputMatrix)
+    V, U = np.linalg.eig(varianceMatrixApprox)
     
     for val in V:
         informationLoss += val
@@ -70,9 +85,10 @@ def GetInformationLoss(inputMatrix):
     return informationLoss
 
 def Get2DProjectedMatrix(inputMatrix):
+    inputMatrix = NormalizeData(inputMatrix)
     transposedInputMatrix = inputMatrix.T
-    squareInputMatrix =  np.dot(transposedInputMatrix, inputMatrix)
-    V, U = np.linalg.eig(squareInputMatrix)
+    varianceMatrixApprox =  np.dot(transposedInputMatrix, inputMatrix)
+    V, U = np.linalg.eig(varianceMatrixApprox)
     eigenTuple = Get2LargestEigenV(V,U)
     transformMatrix = GetTransformMatrix(eigenTuple[1])
     projectedMatrix = np.dot(inputMatrix, transformMatrix)
@@ -102,6 +118,7 @@ if __name__ == "__main__":
     projectedMatrix = Get2DProjectedMatrix(inputMatrix)
     Plot2DMatrix(projectedMatrix)
     print("Information Loss : ",GetInformationLoss(inputMatrix))
-	"""
+    """
+	
     
     
